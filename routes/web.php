@@ -35,4 +35,12 @@ Route::get('/inventarios/register', 'InventariosController@ShowForm')->name('Inv
 
 Route::post('/inventarios/register', 'InventariosController@create')->name('InventarioRegistered');
 
+Route::get('/inventarios/{id}/delete', 'InventariosController@destroy')->name('InventariosDelete');
+
 Route::get('/marcas', 'MarcasController@index')->name('MarcasList');
+
+Route::get('/marcas/register', 'MarcasController@ShowForm')->name('MarcasRegister');
+
+Route::post('/marcas/register', 'MarcasController@create')->name('MarcasRegistered');
+
+Route::get('/marcas/{id}/delete', 'MarcasController@destroy')->name('MarcasDelete');

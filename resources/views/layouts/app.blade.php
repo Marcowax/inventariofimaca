@@ -58,7 +58,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									@if( Auth::user()->administrator == 'Sí' )
-										<a class="dropdown-item" href="{{ route('InventariosRegister') }}">{{ __('Registro de Inventarios') }}</a>
+										<a class="dropdown-item" href="{{ route('InventariosRegister') }}">{{ __('Inventarios') }}</a>
+										<a class="dropdown-item" href="{{ route('MarcasRegister') }}">{{ __('Marcas') }}</a>
 										<a class="dropdown-item" href="{{ route('register') }}">{{ __('Usuarios') }}</a>
 									@endif
                                 </div>
@@ -70,6 +71,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									@if( Auth::user()->administrator == 'Sí' )
 										<a id="" class="nav-link" href="{{ route('InventariosList') }}" role="button">{{ __('Inventarios') }}</a>
+									<a id="" class="nav-link" href="{{ route('MarcasList') }}" role="button">{{ __('Marcas') }}</a>
 										<a id="" class="nav-link" href="{{ route('UsersList') }}" role="button">{{ __('Usuarios') }}</a>
 									@endif
                                 </div>

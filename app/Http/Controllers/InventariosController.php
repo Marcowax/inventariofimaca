@@ -127,6 +127,11 @@ class InventariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Inventario::destroy($id);
+		$marcas = Marca::all();
+		$tipos = Tipo::all();
+		$ubicaciones = Ubicacion::all();
+		//return $inventario;
+		return back()->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'mensaje' => '¡El equipo ha sido eliminado exitosamente!'));
     }
 }
