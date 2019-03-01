@@ -8,23 +8,23 @@
 		{{Session::get('mensaje')}}
 	</div>
 @endif
-@if(count($marcas)!=0)
+@if(count($ubicaciones)!=0)
 	<div class="row">
-	<h3>Listado de Marcas</h3>
+	<h3>Listado de Ubicaciones o Departamentos</h3>
 		<table class="table table-striped table-bordered">
 			<thead align="center">
 				<tr>
 					<th scope="col">Id</th>
-					<th scope="col">Nombre de la Marca</th>
+					<th scope="col">Ubicación o Departamento</th>
 					<th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($marcas as $marca)
+			@foreach($ubicaciones as $ubicacion)
 				<tr>
-					<td align="center">{{$marca->id}}</td>
-					<td>{{$marca->nombre_marca}}</td>
-					<td align="center"><a href="/marcas/{{ $marca->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a><a href="/marcas/{{ $marca->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></a></td>
+					<td align="center">{{ $ubicacion->id }}</td>
+					<td>{{ $ubicacion->nombre_ubicacion }}</td>
+					<td align="center"><a href="/ubicaciones/{{ $ubicacion->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a><a href="/ubicaciones/{{ $ubicacion->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			@endforeach
 			</tbody>

@@ -22,7 +22,7 @@ class MarcasController extends Controller
     public function index()
     {
         $marcas = Marca::orderBy('nombre_marca', 'asc')->get();
-		//return $inventario;
+		//return $marcas;
 		return view('marcas.index')->with('marcas', $marcas);
     }
 
@@ -47,6 +47,8 @@ class MarcasController extends Controller
 	}
 		$marca = new Marca;
 		$marca->nombre_marca = $request->nombre_marca;
+		$marca->created_at = now();
+		$marca->updated_at = now();
 		$marca->save();
 		return redirect('/marcas/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');
 	}

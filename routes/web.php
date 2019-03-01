@@ -52,3 +52,11 @@ Route::get('/tipos/register', 'TiposController@ShowForm')->name('TiposRegister')
 Route::post('/tipos/register', 'TiposController@create')->name('TiposRegistered');
 
 Route::get('/tipos/{id}/delete', 'TiposController@destroy')->name('TiposDelete');
+
+Route::get('/ubicaciones', 'UbicacionesController@index')->name('UbicacionesList');
+
+Route::get('/ubicaciones/register', 'UbicacionesController@ShowForm')->name('UbicacionesRegister');
+
+Route::post('/ubicaciones/register', 'UbicacionesController@create')->name('UbicacionesRegistered');
+
+Route::get('/ubicaciones/{id}/delete', 'UbicacionesController@destroy')->name('UbicacionesDelete');

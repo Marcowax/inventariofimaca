@@ -61,6 +61,7 @@
 										<a class="dropdown-item" href="{{ route('InventariosRegister') }}">{{ __('Inventarios') }}</a>
 										<a class="dropdown-item" href="{{ route('MarcasRegister') }}">{{ __('Marcas') }}</a>
 										<a class="dropdown-item" href="{{ route('TiposRegister') }}">{{ __('Tipos') }}</a>
+										<a class="dropdown-item" href="{{ route('UbicacionesRegister') }}">{{ __('Ubicaciones o Departamentos') }}</a>
 										<a class="dropdown-item" href="{{ route('register') }}">{{ __('Usuarios') }}</a>
 									@endif
                                 </div>
@@ -74,6 +75,7 @@
 										<a id="" class="nav-link" href="{{ route('InventariosList') }}" role="button">{{ __('Inventarios') }}</a>
 										<a id="" class="nav-link" href="{{ route('MarcasList') }}" role="button">{{ __('Marcas') }}</a>
 										<a id="" class="nav-link" href="{{ route('TiposList') }}" role="button">{{ __('Tipos') }}</a>
+										<a id="" class="nav-link" href="{{ route('UbicacionesList') }}" role="button">{{ __('Ubicaciones o Departamentos') }}</a>
 										<a id="" class="nav-link" href="{{ route('UsersList') }}" role="button">{{ __('Usuarios') }}</a>
 									@endif
                                 </div>

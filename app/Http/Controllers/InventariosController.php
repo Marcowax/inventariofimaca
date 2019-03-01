@@ -69,6 +69,7 @@ class InventariosController extends Controller
 		$inventario->ubicacion_id = $request->ubicacion;
 		$inventario->fecha_registro = $date->format('Y-m-d');
 		$inventario->activo = $request->activo;
+		$inventario->created_at = now();
 		$inventario->updated_at = now();
 		$inventario->save();
 		return redirect('/inventarios/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');

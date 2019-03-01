@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tipo;
+use App\Ubicacion;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\TipoRequest;
+use App\Http\Requests\UbicacionRequest;
 
-class TiposController extends Controller
+class UbicacionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class TiposController extends Controller
      */
     public function index()
     {
-        $tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
-		//return $tipos;
-		return view('tipos.index')->with('tipos', $tipos);
+        $ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+		//return $ubicaciones;
+		return view('ubicaciones.index')->with('ubicaciones', $ubicaciones);
     }
 
     /**
@@ -28,24 +28,24 @@ class TiposController extends Controller
      */
 	public function ShowForm()
 	{
-		return view('tipos.new');
+		return view('ubicaciones.new');
 	}
-
+	
     public function create(Request $request)
     {
 		$validator = Validator::make($request->all(), [
-		'nombre_tipo'=>'required|unique:tipos,nombre_tipo,'.$request->id,
+		'nombre_ubicacion'=>'required|unique:ubicacions,nombre_ubicacion,'.$request->id,
 	]);
 
 	if($validator->fails()){
 	return back()->withInput()->withErrors($validator);
 	}
-		$tipo = new Tipo;
-		$tipo->nombre_tipo = $request->nombre_tipo;
-		$tipo->created_at = now();
-		$tipo->updated_at = now();
-		$tipo->save();
-		return redirect('/tipos/register')->with('mensaje', '¡El tipo se ha registrado exitosamente!');
+		$ubicacion = new Ubicacion;
+		$ubicacion->nombre_ubicacion = $request->nombre_ubicacion;
+		$ubicacion->created_at = now();
+		$ubicacion->updated_at = now();
+		$ubicacion->save();
+		return back()->with('mensaje', '¡La ubicación o departamento se ha registrado exitosamente!');
 	}
 
     /**
@@ -101,9 +101,9 @@ class TiposController extends Controller
      */
     public function destroy($id)
     {
-        Tipo::destroy($id);
-		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+		Ubicacion::destroy($id);
+		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
 		//return $inventario;
-		return back()->with(array('tipos' => $tipos, 'mensaje' => '¡El tipo ha sido eliminado exitosamente!'));
+		return back()->with(array('ubicaciones', $ubicaciones, 'mensaje' => '¡La ubicación o departamento ha sido eliminado exitosamente!'));
     }
 }
