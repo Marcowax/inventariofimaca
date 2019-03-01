@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ubicacionesTableSeeder extends Seeder
+class UbicacionesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

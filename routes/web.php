@@ -44,3 +44,11 @@ Route::get('/marcas/register', 'MarcasController@ShowForm')->name('MarcasRegiste
 Route::post('/marcas/register', 'MarcasController@create')->name('MarcasRegistered');
 
 Route::get('/marcas/{id}/delete', 'MarcasController@destroy')->name('MarcasDelete');
+
+Route::get('/tipos', 'TiposController@index')->name('TiposList');
+
+Route::get('/tipos/register', 'TiposController@ShowForm')->name('TiposRegister');
+
+Route::post('/tipos/register', 'TiposController@create')->name('TiposRegistered');
+
+Route::get('/tipos/{id}/delete', 'TiposController@destroy')->name('TiposDelete');

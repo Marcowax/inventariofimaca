@@ -3,27 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Marca;
+use App\Tipo;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\MarcaRequest;
+use App\Http\Requests\TipoRequest;
 
-class MarcasController extends Controller
+class TiposController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-	
     public function index()
     {
-        $marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+        $tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
 		//return $inventario;
-		return view('marcas.index')->with('marcas', $marcas);
+		return view('tipos.index')->with('tipos', $tipos);
     }
 
     /**
@@ -33,22 +28,22 @@ class MarcasController extends Controller
      */
 	public function ShowForm()
 	{
-		return view('marcas.new');
+		return view('tipos.new');
 	}
-	
-	public function create(Request $request)
+
+    public function create(Request $request)
     {
 		$validator = Validator::make($request->all(), [
-		'nombre_marca'=>'required|unique:marcas,nombre_marca,'.$request->id,
+		'nombre_tipo'=>'required|unique:tipos,nombre_tipo,'.$request->id,
 	]);
 
 	if($validator->fails()){
 	return back()->withInput()->withErrors($validator);
 	}
-		$marca = new Marca;
-		$marca->nombre_marca = $request->nombre_marca;
-		$marca->save();
-		return redirect('/marcas/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');
+		$tipo = new Tipo;
+		$tipo->nombre_tipo = $request->nombre_tipo;
+		$tipo->save();
+		return redirect('/tipos/register')->with('mensaje', '¡El tipo se ha registrado exitosamente!');
 	}
 
     /**
@@ -104,9 +99,9 @@ class MarcasController extends Controller
      */
     public function destroy($id)
     {
-        Marca::destroy($id);
-		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+        Tipo::destroy($id);
+		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
 		//return $inventario;
-		return back()->with(array('marcas' => $marcas, 'mensaje' => '¡La marca ha sido eliminado exitosamente!'));
+		return back()->with(array('tipos' => $tipos, 'mensaje' => '¡El tipo ha sido eliminado exitosamente!'));
     }
 }

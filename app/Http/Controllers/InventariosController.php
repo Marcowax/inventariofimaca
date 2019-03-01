@@ -25,7 +25,7 @@ class InventariosController extends Controller
 	
     public function index()
     {
-        $inventario = Inventario::all();
+        $inventario = Inventario::orderBy('nombre_equipo', 'asc')->get();
 		//return $inventario;
 		return view('inventarios.index')->with('inventario', $inventario);
     }
@@ -38,9 +38,9 @@ class InventariosController extends Controller
 	 
 	public function ShowForm()
 	{
-		$marcas = Marca::all();
-		$tipos = Tipo::all();
-		$ubicaciones = Ubicacion::all();
+		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
 		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
 	}
 	
@@ -128,9 +128,9 @@ class InventariosController extends Controller
     public function destroy($id)
     {
         Inventario::destroy($id);
-		$marcas = Marca::all();
-		$tipos = Tipo::all();
-		$ubicaciones = Ubicacion::all();
+		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
 		//return $inventario;
 		return back()->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'mensaje' => '¡El equipo ha sido eliminado exitosamente!'));
     }
