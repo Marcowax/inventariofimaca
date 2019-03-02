@@ -176,4 +176,22 @@ class InventariosController extends Controller
 		//return $inventario;
 		return back()->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'mensaje' => '¡El equipo ha sido eliminado exitosamente!'));
     }
+	
+	public function destroyMany(Request $request)
+    {
+		if(empty($request->ids)){
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+			$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'mensaje' => '¡Debe seleccionar al menos un equipo!'));	
+		}else{
+			Inventario::destroy($request->ids);
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+			$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'mensaje' => '¡Los equipos seleccionados han sido eliminados exitosamente!'));
+		}
+    }
 }

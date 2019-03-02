@@ -9,11 +9,13 @@
 	</div>
 @endif
 @if(count($inventario)!=0)
+<form method="GET" action="{{ route('InventariosMultipleDelete') }}">
 	<div class="row">
 	<h3>Listado de Inventario</h3>
 		<table class="table table-striped table-bordered">
 			<thead align="center">
 				<tr>
+					<th scope="col"><input type="checkbox" id="SeleccionCompleta" name="SeleccionCompleta" title="Seleccionar Todos" /></th>
 					<th scope="col">Id</th>
 					<th scope="col">Nombre del equipo</th>
 					<th scope="col">Serial</th>
@@ -24,7 +26,8 @@
 			</thead>
 			<tbody>
 			@foreach($inventario as $inventarios)
-				<tr>
+				<tr align="center">
+					<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $inventarios->id }}" /></th>
 					<td align="center">{{ $inventarios->id }}</td>
 					<td align="center">{{ $inventarios->nombre_equipo }}</td>
 					<td>{{ $inventarios->serial }}</td>
@@ -36,6 +39,28 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="form-group row mb-0">
+		<div class="col-md-5 offset-md-5">
+			<button type="submit" id="eliminarseleccion" name="eliminarseleccion" class="btn btn-primary" onclick="return confirm('¿Estás seguro de eliminar los elementos seleccionados?')" disabled="disabled">
+				{{ __('Eliminar Selección') }}
+			</button>
+		</div>
+	</div>
+</form>
+<script>
+$('document').ready(function(){
+	$("#SeleccionCompleta").change(function (){
+		$("input:checkbox").prop('checked', $(this).prop("checked"));
+		$('#eliminarseleccion').attr("disabled", false);
+  
+	if ($('#SeleccionCompleta').prop('checked')) {
+		$('#eliminarseleccion').attr("disabled", false);
+	}else{
+		$('#eliminarseleccion').attr("disabled", true);
+	}
+});
+});
+</script>
 @else
 <div class="alert alert-primary alert-dismissible" role="alert">
 	{{('No se encontró ningún registro')}}

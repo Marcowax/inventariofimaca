@@ -115,7 +115,21 @@ class TiposController extends Controller
     {
         Tipo::destroy($id);
 		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
-		//return $inventario;
+		//return $tipo;
 		return back()->with(array('tipos' => $tipos, 'mensaje' => '¡El tipo ha sido eliminado exitosamente!'));
+    }
+	
+    public function destroyMany(Request $request)
+    {
+		if(empty($request->ids)){
+			$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+			//return $tipo;
+			return back()->with(array('tipos' => $tipos, 'mensaje' => '¡Debe seleccionar al menos un tipo!'));
+		}else{
+			Tipo::destroy($request->ids);
+			$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+			//return $tipo;
+			return back()->with(array('tipos' => $tipos, 'mensaje' => '¡Los tipos seleccionados han sido eliminados exitosamente!'));
+		}
     }
 }

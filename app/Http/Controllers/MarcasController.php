@@ -123,4 +123,17 @@ class MarcasController extends Controller
 		//return $inventario;
 		return back()->with(array('marcas' => $marcas, 'mensaje' => '¡La marca ha sido eliminado exitosamente!'));
     }
+	public function destroyMany(Request $request)
+    {
+		if(empty($request->ids)){
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'mensaje' => '¡Debe seleccionar al menos una marca!'));
+		}else{
+			Marca::destroy($request->ids);
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'mensaje' => '¡Las marcas selecionas han sido eliminados exitosamente!'));
+		}
+	}
 }

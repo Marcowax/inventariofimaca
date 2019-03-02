@@ -41,6 +41,8 @@ Route::post('/inventarios/{id}/update', 'InventariosController@update')->name('I
 
 Route::get('/inventarios/{id}/delete', 'InventariosController@destroy')->name('InventariosDelete');
 
+Route::get('/inventarios/delete', 'InventariosController@destroyMany')->name('InventariosMultipleDelete');
+
 Route::get('/marcas', 'MarcasController@index')->name('MarcasList');
 
 Route::get('/marcas/register', 'MarcasController@ShowForm')->name('MarcasRegister');
@@ -52,6 +54,8 @@ Route::get('/marcas/{id}/edit', 'MarcasController@edit')->name('MarcasEdit');
 Route::post('/marcas/{id}/update', 'MarcasController@update')->name('MarcasUpdate');
 
 Route::get('/marcas/{id}/delete', 'MarcasController@destroy')->name('MarcasDelete');
+
+Route::get('/marcas/delete', 'MarcasController@destroyMany')->name('MarcasMultipleDelete');
 
 Route::get('/tipos', 'TiposController@index')->name('TiposList');
 
@@ -65,6 +69,8 @@ Route::post('/tipos/{id}/update', 'TiposController@update')->name('TiposUpdate')
 
 Route::get('/tipos/{id}/delete', 'TiposController@destroy')->name('TiposDelete');
 
+Route::get('/tipos/delete', 'TiposController@destroyMany')->name('TiposMultipleDelete');
+
 Route::get('/ubicaciones', 'UbicacionesController@index')->name('UbicacionesList');
 
 Route::get('/ubicaciones/register', 'UbicacionesController@ShowForm')->name('UbicacionesRegister');
@@ -76,3 +82,5 @@ Route::get('/ubicaciones/{id}/edit', 'UbicacionesController@edit')->name('Ubicac
 Route::post('/ubicaciones/{id}/update', 'UbicacionesController@update')->name('UbicacionesUpdate');
 
 Route::get('/ubicaciones/{id}/delete', 'UbicacionesController@destroy')->name('UbicacionesDelete');
+
+Route::get('/ubicaciones/delete', 'UbicacionesController@destroyMany')->name('UbicacionesMultipleDelete');

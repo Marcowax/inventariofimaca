@@ -118,4 +118,18 @@ class UbicacionesController extends Controller
 		//return $inventario;
 		return back()->with(array('ubicaciones', $ubicaciones, 'mensaje' => '¡La ubicación o departamento ha sido eliminado exitosamente!'));
     }
+	
+	public function destroyMany(Request $request)
+    {
+		if(empty($request->ids)){
+			$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('ubicaciones', $ubicaciones, 'mensaje' => '¡Debe seleccionar al menos una ubicación o departamento!'));	
+		}else{
+			Ubicacion::destroy($request->ids);
+			$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('ubicaciones', $ubicaciones, 'mensaje' => '¡Las ubicaciones o departamentos seleccionados han sido eliminados exitosamente!'));
+		}
+    }
 }
