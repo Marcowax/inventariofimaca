@@ -24,7 +24,7 @@
 				<tr>
 					<td align="center">{{ $ubicacion->id }}</td>
 					<td>{{ $ubicacion->nombre_ubicacion }}</td>
-					<td align="center"><a href="/ubicaciones/{{ $ubicacion->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a><a href="/ubicaciones/{{ $ubicacion->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></a></td>
+					<td align="center"><a href="/ubicaciones/{{ $ubicacion->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ubicaciones/{{ $ubicacion->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			@endforeach
 			</tbody>

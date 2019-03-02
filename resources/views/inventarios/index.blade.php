@@ -30,7 +30,7 @@
 					<td>{{ $inventarios->serial }}</td>
 					<td>{{ $inventarios->nombre_marca }}</td>
 					<td>{{ $inventarios->modelo }}</td>
-					<td align="center"><a href="/inventarios/{{ $inventarios->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a><a href="/inventarios/{{ $inventarios->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></a></td>
+					<td align="center"><a href="/inventarios/{{ $inventarios->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/inventarios/{{ $inventarios->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			@endforeach
 			</tbody>
