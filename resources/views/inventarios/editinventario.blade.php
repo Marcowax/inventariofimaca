@@ -69,7 +69,7 @@
 								<select id="ubicacion" name="ubicacion" class="form-control">
 									<option value="{{ $inventario->ubicacion_id }}">{{ $ubicacion_actual->nombre_ubicacion }}</option>
 									@foreach($ubicaciones as $ubicacion)
-										<option value="{{$ubicacion->id}}">{{$ubicacion->nombre_ubicacion}}</option>
+										<option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre_ubicacion }}</option>
 									@endforeach
 								</select>
                             </div>

@@ -46,7 +46,7 @@ class InventariosController extends Controller
 		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
 		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
 		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
-		return view('inventarios.editinventario')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
+		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
 	}
 	
     public function create(Request $request)
