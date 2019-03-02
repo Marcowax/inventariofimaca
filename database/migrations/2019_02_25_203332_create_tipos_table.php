@@ -15,7 +15,7 @@ class CreateTiposTable extends Migration
     {
         Schema::create('tipos', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('nombre_tipo', 20)->nullable($value = false)->unique();
+			$table->string('nombre_tipo', 30)->nullable($value = false)->unique();
             $table->timestamps();
         });
     }

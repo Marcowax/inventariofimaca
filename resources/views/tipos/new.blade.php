@@ -19,7 +19,7 @@
                             <label for="nombre_tipo" class="col-md-3 col-form-label text-md-right">{{ __('Tipo') }}</label>
 
                             <div class="col-md-8">
-                                <input type="text" id="nombre_tipo" name="nombre_tipo" class="form-control" value="{{ old('nombre_tipo') }}" autocomplete="off" />
+                                <input type="text" id="nombre_tipo" name="nombre_tipo" class="form-control" value="{{ old('nombre_tipo') }}" maxlength="30" autocomplete="off" />
                                 
                             </div>
                         </div>

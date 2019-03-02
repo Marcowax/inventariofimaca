@@ -10,6 +10,7 @@ use App\Ubicacion;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\InventarioRequest;
+use DB;
 
 class InventariosController extends Controller
 {
@@ -25,7 +26,11 @@ class InventariosController extends Controller
 	
     public function index()
     {
-        $inventario = Inventario::orderBy('nombre_equipo', 'asc')->get();
+		$inventario = DB::table('marcas')
+			->join('inventarios', 'marcas.id', '=', 'inventarios.marca_id')
+			->select('inventarios.id as id', 'inventarios.nombre_equipo as nombre_equipo', 'inventarios.serial as serial', 'inventarios.modelo as modelo', 'marcas.nombre_marca as nombre_marca')
+			->get();		
+		
 		//return $inventario;
 		return view('inventarios.index')->with('inventario', $inventario);
     }
@@ -41,12 +46,13 @@ class InventariosController extends Controller
 		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
 		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
 		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
-		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
+		return view('inventarios.editinventario')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
 	}
 	
     public function create(Request $request)
     {
 	$validator = Validator::make($request->all(), [
+		'nombre_equipo'=>'required',
 		'serial'=>'required|unique:inventarios,serial,'.$request->id,
 		'marca'=>'required',
 		'modelo'=>'required',
@@ -59,8 +65,8 @@ class InventariosController extends Controller
 	if($validator->fails()){
 	return back()->withInput()->withErrors($validator);
 	}
-		$date = new DateTime($request->fecha_registro);
 		$inventario = new Inventario;
+		$date = new DateTime($request->fecha_registro);
 		$inventario->nombre_equipo = $request->nombre_equipo;
 		$inventario->serial = $request->serial;
 		$inventario->marca_id = $request->marca;
@@ -72,7 +78,7 @@ class InventariosController extends Controller
 		$inventario->created_at = now();
 		$inventario->updated_at = now();
 		$inventario->save();
-		return redirect('/inventarios/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');
+		return redirect('/inventarios/register')->with('mensaje', '¡El equipo se ha registrado exitosamente!');
 	}
 
     /**
@@ -105,7 +111,16 @@ class InventariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $inventario = inventario::select("id","nombre_equipo", "serial", "marca_id", "tipo_id", "modelo", 'ubicacion_id', 'fecha_registro')->findOrFail($id);
+		$date = new DateTime($inventario->fecha_registro);
+		$inventario->fecha_registro = $date->format('d-m-Y');
+		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+		$marca_actual = marca::find($inventario->marca_id);
+		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+		$tipo_actual = tipo::find($inventario->tipo_id);
+		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
+		$ubicacion_actual = ubicacion::find($inventario->ubicacion_id);
+		return view('inventarios.editinventario')->with(array('inventario' => $inventario, 'marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'marca_actual' => $marca_actual, 'tipo_actual' => $tipo_actual, 'ubicacion_actual' => $ubicacion_actual));
     }
 
     /**
@@ -117,8 +132,34 @@ class InventariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+	$validator = Validator::make($request->all(), [
+		'nombre_equipo'=>'required',
+		'serial'=>'required|unique:inventarios,serial,'.$request->id,
+		'marca'=>'required',
+		'modelo'=>'required',
+		'tipo'=>'required',
+		'ubicacion'=>'required',
+		'fecha_registro'=>'required|date_format:d-m-Y',
+		'activo'=>'required',
+	]);
+
+	if($validator->fails()){
+	return back()->withInput()->withErrors($validator);
+	}
+		$inventario = inventario::find($id);
+		$date = new DateTime($request->fecha_registro);
+		$inventario->nombre_equipo = $request->nombre_equipo;
+		$inventario->serial = $request->serial;
+		$inventario->marca_id = $request->marca;
+		$inventario->modelo = $request->modelo;
+		$inventario->tipo_id = $request->tipo;
+		$inventario->ubicacion_id = $request->ubicacion;
+		$inventario->fecha_registro = $date->format('Y-m-d');
+		$inventario->activo = $request->activo;
+		$inventario->updated_at = now();
+		$inventario->save();
+		return redirect('/inventarios')->with('mensaje', '¡El equipo se ha modificado exitosamente!');
+	}
 
     /**
      * Remove the specified resource from storage.

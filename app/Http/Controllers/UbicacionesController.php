@@ -78,7 +78,8 @@ class UbicacionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ubicacion = ubicacion::findOrFail($id);
+		return view('ubicaciones.editubicacion')->with('ubicacion', $ubicacion);
     }
 
     /**
@@ -90,8 +91,19 @@ class UbicacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+    $validator = Validator::make($request->all(), [
+		'nombre_ubicacion'=>'required|unique:ubicacions,nombre_ubicacion,'.$request->id,
+	]);
+
+	if($validator->fails()){
+	return back()->withInput()->withErrors($validator);
+	}
+		$ubicacion = ubicacion::find($id);
+		$ubicacion->nombre_ubicacion = $request->nombre_ubicacion;
+		$ubicacion->updated_at = now();
+		$ubicacion->save();
+		return redirect('/ubicaciones')->with('mensaje', '¡La ubicación se ha modificado exitosamente!');
+	}
 
     /**
      * Remove the specified resource from storage.

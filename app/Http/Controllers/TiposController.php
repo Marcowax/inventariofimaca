@@ -45,7 +45,7 @@ class TiposController extends Controller
 		$tipo->created_at = now();
 		$tipo->updated_at = now();
 		$tipo->save();
-		return redirect('/tipos/register')->with('mensaje', '¡El tipo se ha registrado exitosamente!');
+		return redirect('/tipos/register')->with('mensaje', '¡El tipo de equipo se ha registrado exitosamente!');
 	}
 
     /**
@@ -78,7 +78,8 @@ class TiposController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipo = tipo::findOrFail($id);
+		return view('tipos.edittipo')->with('tipo', $tipo);
     }
 
     /**
@@ -90,8 +91,19 @@ class TiposController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+    $validator = Validator::make($request->all(), [
+		'nombre_tipo'=>'required|unique:tipos,nombre_tipo,'.$request->id,
+	]);
+
+	if($validator->fails()){
+	return back()->withInput()->withErrors($validator);
+	}
+		$tipo = tipo::find($id);
+		$tipo->nombre_tipo = $request->nombre_tipo;
+		$tipo->updated_at = now();
+		$tipo->save();
+		return redirect('/tipos')->with('mensaje', '¡El tipo de equipo se ha modificado exitosamente!');
+	}
 
     /**
      * Remove the specified resource from storage.

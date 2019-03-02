@@ -50,7 +50,7 @@ class MarcasController extends Controller
 		$marca->created_at = now();
 		$marca->updated_at = now();
 		$marca->save();
-		return redirect('/marcas/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');
+		return redirect('/marcas/register')->with('mensaje', '¡La marca se ha registrado exitosamente!');
 	}
 
     /**
@@ -83,7 +83,8 @@ class MarcasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marca = marca::findOrFail($id);
+		return view('marcas.editmarca')->with('marca', $marca);
     }
 
     /**
@@ -95,8 +96,19 @@ class MarcasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+    $validator = Validator::make($request->all(), [
+		'nombre_marca'=>'required|unique:marcas,nombre_marca,'.$request->id,
+	]);
+
+	if($validator->fails()){
+	return back()->withInput()->withErrors($validator);
+	}
+		$marca = marca::find($id);
+		$marca->nombre_marca = $request->nombre_marca;
+		$marca->updated_at = now();
+		$marca->save();
+		return redirect('/marcas')->with('mensaje', '¡La marca se ha modificado exitosamente!');
+	}
 
     /**
      * Remove the specified resource from storage.

@@ -25,11 +25,11 @@
 			<tbody>
 			@foreach($inventario as $inventarios)
 				<tr>
-					<td align="center">{{$inventarios->id}}</td>
-					<td align="center">{{$inventarios->nombre_equipo}}</td>
-					<td>{{$inventarios->serial}}</td>
-					<td>{{$inventarios->marca}}</td>
-					<td>{{$inventarios->modelo}}</td>
+					<td align="center">{{ $inventarios->id }}</td>
+					<td align="center">{{ $inventarios->nombre_equipo }}</td>
+					<td>{{ $inventarios->serial }}</td>
+					<td>{{ $inventarios->nombre_marca }}</td>
+					<td>{{ $inventarios->modelo }}</td>
 					<td align="center"><a href="/inventarios/{{ $inventarios->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a><a href="/inventarios/{{ $inventarios->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			@endforeach

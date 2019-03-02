@@ -17,10 +17,10 @@ class CreateInventariosTable extends Migration
             $table->increments('id');
 			$table->string('nombre_equipo', 50)->nullable($value = true);
 			$table->string('serial', 50)->nullable($value = false);
-			$table->string('marca', 50)->nullable($value = false);
-			$table->string('modelo', 50)->nullable($value = false);
-			$table->string('tipo', 20)->nullable($value = false);
-			$table->string('ubicacion', 50)->nullable($value = false);
+			$table->string('marca', 30)->nullable($value = false);
+			$table->string('modelo', 30)->nullable($value = false);
+			$table->string('tipo', 30)->nullable($value = false);
+			$table->string('ubicacion', 30)->nullable($value = false);
 			$table->date('fecha_registro')->nullable($value = false);
 			$table->enum('activo', ['Sí', 'No'])->nullable($value = false);
             $table->timestamps();
