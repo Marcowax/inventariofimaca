@@ -5,7 +5,7 @@
 @if(Session::has('mensaje'))
 	<div class="alert alert-success alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		{{Session::get('mensaje')}}
+		{{ Session::get('mensaje') }}
 	</div>
 @endif
 @if(count($marcas)!=0)
@@ -22,8 +22,8 @@
 			<tbody>
 			@foreach($marcas as $marca)
 				<tr>
-					<td align="center">{{$marca->id}}</td>
-					<td>{{$marca->nombre_marca}}</td>
+					<td align="center">{{ $marca->id }}</td>
+					<td>{{ $marca->nombre_marca }}</td>
 					<td align="center"><a href="/marcas/{{ $marca->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/marcas/{{ $marca->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			@endforeach
