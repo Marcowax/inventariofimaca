@@ -43,10 +43,11 @@ class InventariosController extends Controller
 	 
 	public function ShowForm()
 	{
+		$fecha_registro = date("d-m-Y");
 		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
 		$tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
 		$ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->get();
-		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones));
+		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'fecha_registro' => $fecha_registro));
 	}
 	
     public function create(Request $request)
@@ -100,7 +101,11 @@ class InventariosController extends Controller
      */
     public function show($id)
     {
-        //
+        $inventario = inventario::select("id","nombre_equipo", "serial", "marca_id", "tipo_id", "modelo", 'ubicacion_id', 'fecha_registro', 'activo')->findOrFail($id);
+		$marca_actual = marca::find($inventario->marca_id);
+		$tipo_actual = tipo::find($inventario->tipo_id);
+		$ubicacion_actual = ubicacion::find($inventario->ubicacion_id);
+		return view('inventarios.showinventario')->with(array('inventario' => $inventario, 'marca_actual' => $marca_actual, 'tipo_actual' => $tipo_actual, 'ubicacion_actual' => $ubicacion_actual));
     }
 
     /**
