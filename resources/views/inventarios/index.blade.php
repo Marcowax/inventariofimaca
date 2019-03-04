@@ -42,7 +42,7 @@
 			{{ $inventario->render() }}
 		</div>
 		<div class="col" align="right">
-			<h4>Hay {{ $inventario->lastItem() }} registros</h4>
+			<h5>Mostrando {{ $inventario->lastItem() }} de {{ $inventario->total() }} registros</h5>
 		</div>
 	</div>
 	<div class="form-group row mb-0">

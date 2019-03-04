@@ -36,7 +36,7 @@
 			{{ $marcas->render() }}
 		</div>
 		<div class="col" align="right">
-			<h4>Hay {{ $marcas->lastItem() }} registros</h4>
+			<h5>Mostrando {{ $marcas->lastItem() }} de {{ $marcas->total() }} registros</h5>
 		</div>			
 	</div>
 	<div class="form-group row mb-0">

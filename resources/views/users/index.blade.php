@@ -36,7 +36,7 @@
 			{{ $users->render() }}
 		</div>
 		<div class="col" align="right">
-			<h4>Hay {{ $users->lastItem() }} registros</h4>
+			<h5>Mostrando {{ $users->lastItem() }} de {{ $users->total() }} registros</h5>
 		</div>
 	</div>
 </div>

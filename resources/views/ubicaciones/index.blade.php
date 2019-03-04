@@ -32,7 +32,12 @@
 			@endforeach
 			</tbody>
 		</table>
-	{{ $ubicaciones->render() }}
+		<div class="col">
+			{{ $ubicaciones->render() }}
+		</div>
+		<div class="col" align="right">
+			<h5>Mostrando {{ $ubicaciones->lastItem() }} de {{ $ubicaciones->total() }} registros</h5>
+		</div>
 	</div>
 	<div class="form-group row mb-0">
 		<div class="col-md-5 offset-md-5">

@@ -36,7 +36,7 @@
 			{{ $tipos->render() }}
 		</div>
 		<div class="col" align="right">
-			<h4>Hay {{ $tipos->lastItem() }} registros</h4>
+			<h5>Mostrando {{ $tipos->lastItem() }} de {{ $tipos->total() }} registros</h5>
 		</div>
 	</div>
 	<div class="form-group row mb-0">
