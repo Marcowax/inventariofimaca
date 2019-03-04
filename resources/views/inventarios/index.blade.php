@@ -40,10 +40,12 @@
 		</table>
 	</div>
 	<div class="form-group row mb-0">
-		<div class="col-md-5 offset-md-5">
+		<div class="col-md-6 offset-md-4">
 			<button type="submit" id="eliminarseleccion" name="eliminarseleccion" class="btn btn-primary" onclick="return confirm('¿Estás seguro de eliminar los elementos seleccionados?')" disabled="disabled">
 				{{ __('Eliminar Selección') }}
-			</button>
+			</button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ route('inventario.pdf') }}" class="btn btn-primary">
+            Descargar inventario en PDF
+        </a>
 		</div>
 	</div>
 </form>

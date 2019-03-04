@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\DB;
 class UsersController extends Controller
 {
     /**
@@ -20,7 +21,7 @@ class UsersController extends Controller
 	
     public function index()
     {
-        $users = User::all();
+        $users = DB::table('users')->simplePaginate(15);
 		//return $users;
 		return view('users.index')->with('users', $users);
     }

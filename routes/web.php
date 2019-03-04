@@ -37,6 +37,8 @@ Route::post('/inventarios/register', 'InventariosController@create')->name('Inve
 
 Route::get('/inventarios/{id}/show', 'InventariosController@show')->name('InventariosShow');
 
+Route::get('/inventarios/pdf', 'InventariosController@pdf')->name('inventario.pdf');
+
 Route::get('/inventarios/{id}/edit', 'InventariosController@edit')->name('InventariosEdit');
 
 Route::post('/inventarios/{id}/update', 'InventariosController@update')->name('InventariosUpdate');

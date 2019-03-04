@@ -10,6 +10,7 @@ use App\Ubicacion;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\InventarioRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 
 class InventariosController extends Controller
@@ -33,6 +34,25 @@ class InventariosController extends Controller
 		
 		//return $inventario;
 		return view('inventarios.index')->with('inventario', $inventario);
+    }
+	
+	
+    public function pdf()
+    {        
+        /**
+         * toma en cuenta que para ver los mismos 
+         * datos debemos hacer la misma consulta
+        **/
+		
+		set_time_limit(300);
+        $inventario = DB::table('marcas')
+			->join('inventarios', 'marcas.id', '=', 'inventarios.marca_id')
+			->select('inventarios.id as id', 'inventarios.nombre_equipo as nombre_equipo', 'inventarios.serial as serial', 'inventarios.modelo as modelo', 'marcas.nombre_marca as nombre_marca')
+			->get();
+
+        $pdf = PDF::loadView('inventarios.pdf.inventario', compact('inventario'));
+
+        return $pdf->download('listado.pdf');
     }
 
     /**
