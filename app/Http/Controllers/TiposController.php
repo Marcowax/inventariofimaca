@@ -16,7 +16,7 @@ class TiposController extends Controller
      */
     public function index()
     {
-        $tipos = Tipo::orderBy('nombre_tipo', 'asc')->get();
+        $tipos = Tipo::orderBy('nombre_tipo', 'asc')->paginate(8);;
 		//return $tipos;
 		return view('tipos.index')->with('tipos', $tipos);
     }

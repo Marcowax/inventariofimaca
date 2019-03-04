@@ -32,6 +32,12 @@
 			@endforeach
 			</tbody>
 		</table>
+		<div class="col">
+			{{ $tipos->render() }}
+		</div>
+		<div class="col" align="right">
+			<h4>Hay {{ $tipos->lastItem() }} registros</h4>
+		</div>
 	</div>
 	<div class="form-group row mb-0">
 		<div class="col-md-5 offset-md-5">

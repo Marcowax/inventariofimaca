@@ -38,6 +38,12 @@
 			@endforeach
 			</tbody>
 		</table>
+		<div class="col">
+			{{ $inventario->render() }}
+		</div>
+		<div class="col" align="right">
+			<h4>Hay {{ $inventario->lastItem() }} registros</h4>
+		</div>
 	</div>
 	<div class="form-group row mb-0">
 		<div class="col-md-6 offset-md-4">

@@ -31,7 +31,13 @@
 				</tr>
 			@endforeach
 			</tbody>
-		</table>		
+		</table>
+		<div class="col">
+			{{ $users->render() }}
+		</div>
+		<div class="col" align="right">
+			<h4>Hay {{ $users->lastItem() }} registros</h4>
+		</div>
 	</div>
 </div>
 @endsection
