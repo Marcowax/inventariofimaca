@@ -58,14 +58,14 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ __('Registros') }} <span class="caret"></span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-									@if( Auth::user()->administrator == 'Sí' )
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">									
 										<a class="dropdown-item" href="{{ route('InventariosRegister') }}">{{ __('Inventarios') }}</a>
 										<a class="dropdown-item" href="{{ route('MarcasRegister') }}">{{ __('Marcas') }}</a>
 										<a class="dropdown-item" href="{{ route('TiposRegister') }}">{{ __('Tipos') }}</a>
 										<a class="dropdown-item" href="{{ route('UbicacionesRegister') }}">{{ __('Ubicaciones o Departamentos') }}</a>
-										<a class="dropdown-item" href="{{ route('register') }}">{{ __('Usuarios') }}</a>
-									@endif
+										@if( Auth::user()->administrator == 'Sí' )
+											<a class="dropdown-item" href="{{ route('register') }}">{{ __('Usuarios') }}</a>
+										@endif
                                 </div>
                             </li>
 							<li class="nav-item dropdown">
@@ -73,13 +73,13 @@
                                     {{ __('Listas') }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-									@if( Auth::user()->administrator == 'Sí' )
 										<a id="" class="nav-link" href="{{ route('InventariosList') }}" role="button">{{ __('Inventarios') }}</a>
 										<a id="" class="nav-link" href="{{ route('MarcasList') }}" role="button">{{ __('Marcas') }}</a>
 										<a id="" class="nav-link" href="{{ route('TiposList') }}" role="button">{{ __('Tipos') }}</a>
 										<a id="" class="nav-link" href="{{ route('UbicacionesList') }}" role="button">{{ __('Ubicaciones o Departamentos') }}</a>
-										<a id="" class="nav-link" href="{{ route('UsersList') }}" role="button">{{ __('Usuarios') }}</a>
-									@endif
+										@if( Auth::user()->administrator == 'Sí' )
+											<a id="" class="nav-link" href="{{ route('UsersList') }}" role="button">{{ __('Usuarios') }}</a>
+										@endif
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
