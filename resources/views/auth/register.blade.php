@@ -60,18 +60,20 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-						
-						<div class="form-group row">
-                            <label for="administrador" class="col-md-4 col-form-label text-md-right">{{ __('Administrador') }}</label>
+						@if(Auth::check())
+							<div class="form-group row">
+								<label for="administrador" class="col-md-4 col-form-label text-md-right">{{ __('Administradowr') }}</label>
 
-                            <div class="col-md-6">
-							<select id="administrador" name="administrador" class="form-control" required>
-								<option value="Sí">Sí</option>
-								<option value="No">No</option>
-							</select>
-                            </div>
-                        </div>
-
+								<div class="col-md-6">
+								<select id="administrador" name="administrador" class="form-control" required>
+									<option value="Sí">Sí</option>
+									<option value="No">No</option>
+								</select>
+								</div>
+							</div>
+						@else
+							<input type="hidden" name="administrador" value="No" class="form-control" >
+						@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">
                                 <button type="submit" class="btn btn-primary">
