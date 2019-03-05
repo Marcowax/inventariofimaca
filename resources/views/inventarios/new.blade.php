@@ -1,4 +1,5 @@
 @extends("layouts.app")
+
 @section("content")
 <div class="container">
     <div class="row justify-content-center">
@@ -10,7 +11,7 @@
 				@if(Session::has('mensaje'))
 				<div class="alert alert-success alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					{{Session::get('mensaje')}}
+					{{ Session::get('mensaje') }}
 				</div>
 			@endif
                     <form method="POST" action="{{ route('InventarioRegistered') }}">
@@ -19,7 +20,7 @@
                             <label for="nombre_equipo" class="col-md-3 col-form-label text-md-right">{{ __('Nombre del equipo') }}</label>
 
                             <div class="col-md-8">
-                                <input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="{{ old('nombre_equipo') }}" autocomplete="off" />
+                                <input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="{{ old('nombre_equipo') }}" maxlength="50" autocomplete="off" />
                                 
                             </div>
                         </div>
@@ -27,7 +28,7 @@
                             <label for="serial" class="col-md-3 col-form-label text-md-right">{{ __('Serial') }}</label>
 
                             <div class="col-md-8">
-                                <input type="text" id="serial" name="serial" class="form-control" value="{{ old('serial') }}" autocomplete="off" />
+                                <input type="text" id="serial" name="serial" class="form-control" value="{{ old('serial') }}" maxlength="50" autocomplete="off" />
                                 
                             </div>
                         </div>
@@ -37,7 +38,7 @@
                             <div class="col-md-8">
 								<select id="marca" name="marca" class="form-control">
 									@foreach($marcas as $marca)
-										<option value="{{$marca->id}}">{{$marca->nombre_marca}}</option>
+										<option value="{{ $marca->id }}">{{ $marca->nombre_marca }}</option>
 									@endforeach
 								</select>
                             </div>
@@ -56,7 +57,7 @@
                             <div class="col-md-8">
 								<select id="tipo" name="tipo" class="form-control">
 									@foreach($tipos as $tipo)
-										<option value="{{$tipo->id}}">{{$tipo->nombre_tipo}}</option>
+										<option value="{{ $tipo->id }}">{{ $tipo->nombre_tipo }}</option>
 									@endforeach
 								</select>
                             </div>
@@ -67,7 +68,7 @@
                             <div class="col-md-8">
 								<select id="ubicacion" name="ubicacion" class="form-control">
 									@foreach($ubicaciones as $ubicacion)
-										<option value="{{$ubicacion->id}}">{{$ubicacion->nombre_ubicacion}}</option>
+										<option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre_ubicacion }}</option>
 									@endforeach
 								</select>
                             </div>
@@ -76,7 +77,7 @@
                             <label for="fecha_registro" class="col-md-3 col-form-label text-md-right">{{ __('Fecha de registro') }}</label>
 
                             <div class="col-md-8">
-                                <input type="text" id="fecha_registro" name="fecha_registro" class="form-control" value="{{ old('serial') }}"  placeholder="dd-mm-yyyy" autocomplete="off" />                           
+                                <input type="text" id="fecha_registro" name="fecha_registro" class="form-control" value="{{ $fecha_registro }}"  placeholder="dd-mm-yyyy" autocomplete="off" />                           
                             </div>
                         </div>
 						<div class="form-group row">

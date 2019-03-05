@@ -1,10 +1,11 @@
 @extends("layouts.app")
+
 @section("content")
 <div class="container">
 @if(Session::has('mensaje'))
 	<div class="alert alert-success alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		{{Session::get('mensaje')}}
+		{{ Session::get('mensaje') }}
 	</div>
 @endif
 	<div class="row">
@@ -30,7 +31,13 @@
 				</tr>
 			@endforeach
 			</tbody>
-		</table>		
+		</table>
+		<div class="col">
+			{{ $users->render() }}
+		</div>
+		<div class="col" align="right">
+			<h5>Mostrando {{ $users->lastItem() }} de {{ $users->total() }} registros</h5>
+		</div>
 	</div>
 </div>
 @endsection

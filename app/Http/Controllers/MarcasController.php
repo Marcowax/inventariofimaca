@@ -21,8 +21,8 @@ class MarcasController extends Controller
 	
     public function index()
     {
-        $marcas = Marca::all();
-		//return $inventario;
+        $marcas = Marca::orderBy('nombre_marca', 'asc')->paginate(8);
+		//return $marcas;
 		return view('marcas.index')->with('marcas', $marcas);
     }
 
@@ -38,7 +38,7 @@ class MarcasController extends Controller
 	
 	public function create(Request $request)
     {
-       $validator = Validator::make($request->all(), [
+		$validator = Validator::make($request->all(), [
 		'nombre_marca'=>'required|unique:marcas,nombre_marca,'.$request->id,
 	]);
 
@@ -47,8 +47,10 @@ class MarcasController extends Controller
 	}
 		$marca = new Marca;
 		$marca->nombre_marca = $request->nombre_marca;
+		$marca->created_at = now();
+		$marca->updated_at = now();
 		$marca->save();
-		return redirect('/marcas/register')->with('mensaje', '¡El Equipo se ha registrado exitosamente!');
+		return redirect('/marcas/register')->with('mensaje', '¡La marca se ha registrado exitosamente!');
 	}
 
     /**
@@ -81,7 +83,8 @@ class MarcasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marca = marca::findOrFail($id);
+		return view('marcas.editmarca')->with('marca', $marca);
     }
 
     /**
@@ -93,8 +96,19 @@ class MarcasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+    $validator = Validator::make($request->all(), [
+		'nombre_marca'=>'required|unique:marcas,nombre_marca,'.$request->id,
+	]);
+
+	if($validator->fails()){
+	return back()->withInput()->withErrors($validator);
+	}
+		$marca = marca::find($id);
+		$marca->nombre_marca = $request->nombre_marca;
+		$marca->updated_at = now();
+		$marca->save();
+		return redirect('/marcas')->with('mensaje', '¡La marca se ha modificado exitosamente!');
+	}
 
     /**
      * Remove the specified resource from storage.
@@ -105,8 +119,21 @@ class MarcasController extends Controller
     public function destroy($id)
     {
         Marca::destroy($id);
-		$marcas = Marca::all();
+		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
 		//return $inventario;
 		return back()->with(array('marcas' => $marcas, 'mensaje' => '¡La marca ha sido eliminado exitosamente!'));
     }
+	public function destroyMany(Request $request)
+    {
+		if(empty($request->ids)){
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'mensaje' => '¡Debe seleccionar al menos una marca!'));
+		}else{
+			Marca::destroy($request->ids);
+			$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
+			//return $inventario;
+			return back()->with(array('marcas' => $marcas, 'mensaje' => '¡Las marcas selecionas han sido eliminados exitosamente!'));
+		}
+	}
 }
