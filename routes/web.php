@@ -27,6 +27,10 @@ Route::get('/users/{id}/edit', 'UsersController@edit')->name('UsersEdit');
 
 Route::post('/users/{id}/update', 'UsersController@update')->name('UsersUpdate');
 
+Route::get('/users/password', 'UsersController@password')->name('PasswordChange');
+
+Route::post('/users/password', 'UsersController@passwordupdate')->name('PasswordChanged');
+
 Route::get('/users/{id}/delete', 'UsersController@destroy')->name('UserDelete');
 
 Route::get('/inventarios', 'InventariosController@index')->name('InventariosList');
