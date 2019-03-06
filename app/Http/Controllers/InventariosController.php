@@ -70,6 +70,18 @@ class InventariosController extends Controller
 		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'fecha_registro' => $fecha_registro));
 	}
 	
+	public function Contador()
+	{
+		$ContadorTotal = DB::table('inventarios')
+			->select(DB::raw('count(tipo_id) as contador, tipo_id'))
+				->groupBy('tipo_id')
+				->get();
+		$tipo=DB::table('tipos')
+			->select('nombre_tipo', 'id')
+			->get();
+		return view('inventarios.count')->with(array('ContadorTotal' => $ContadorTotal, 'tipo' => $tipo));
+	}
+	
     public function create(Request $request)
     {
 	$validator = Validator::make($request->all(), [
