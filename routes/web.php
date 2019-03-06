@@ -45,6 +45,8 @@ Route::get('/inventarios/pdf', 'InventariosController@pdf')->name('inventario.pd
 
 Route::get('/inventarios/count', 'InventariosController@Contador')->name('InventarioContador');
 
+Route::get('/inventarios/{id}/tipo', 'InventariosController@ShowTipo')->name('InventariosShowTipo');
+
 Route::get('/inventarios/{id}/edit', 'InventariosController@edit')->name('InventariosEdit');
 
 Route::post('/inventarios/{id}/update', 'InventariosController@update')->name('InventariosUpdate');

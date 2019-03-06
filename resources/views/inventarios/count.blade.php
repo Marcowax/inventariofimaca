@@ -17,6 +17,7 @@
 				<tr>
 					<th scope="col">Tipo de equipo</th>
 					<th scope="col">Cantidad</th>
+					<th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 						<tr align="center">
 							<td align="center">{{ $tipos->nombre_tipo }}</td>
 							<td align="center">{{ $contador->contador }}</td>
+							<td align="center"><a href="/inventarios/{{ $contador->tipo_id }}/tipo" title="Detalles"><i class="far fa-eye"></i></a></td>
 						</tr>
 					@endif
 				@endforeach

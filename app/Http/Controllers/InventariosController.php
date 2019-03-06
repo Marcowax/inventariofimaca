@@ -70,6 +70,16 @@ class InventariosController extends Controller
 		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'fecha_registro' => $fecha_registro));
 	}
 	
+	public function ShowTipo($id)
+	{
+		$equipo = DB::table('inventarios')
+			->select('id', 'nombre_equipo', 'serial', 'modelo')
+				->where('tipo_id', '=', $id)
+				->get();
+		$tipo = tipo::find($id);
+		return view('inventarios.detalles')->with(array('equipo' => $equipo, 'tipo' => $tipo));
+	}
+	
 	public function Contador()
 	{
 		$ContadorTotal = DB::table('inventarios')
@@ -148,7 +158,7 @@ class InventariosController extends Controller
      */
     public function edit($id)
     {
-        $inventario = inventario::select("id","nombre_equipo", "serial", "marca_id", "tipo_id", "modelo", 'ubicacion_id', 'fecha_registro')->findOrFail($id);
+        $inventario = inventario::select('id', 'nombre_equipo', 'serial', 'marca_id', 'tipo_id', 'modelo', 'ubicacion_id', 'fecha_registro')->findOrFail($id);
 		$date = new DateTime($inventario->fecha_registro);
 		$inventario->fecha_registro = $date->format('d-m-Y');
 		$marcas = Marca::orderBy('nombre_marca', 'asc')->get();
