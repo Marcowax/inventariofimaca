@@ -16,7 +16,8 @@ class UbicacionesController extends Controller
      */
     public function index()
     {
-        $ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->paginate(8);
+        $ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->paginate(20);
+		
 		//return $ubicaciones;
 		return view('ubicaciones.index')->with('ubicaciones', $ubicaciones);
     }

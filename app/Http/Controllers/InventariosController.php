@@ -30,7 +30,7 @@ class InventariosController extends Controller
 		$inventario = DB::table('marcas')
 			->join('inventarios', 'marcas.id', '=', 'inventarios.marca_id')
 			->select('inventarios.id as id', 'inventarios.nombre_equipo as nombre_equipo', 'inventarios.serial as serial', 'inventarios.modelo as modelo', 'marcas.nombre_marca as nombre_marca')
-			->paginate(8);		
+			->paginate(20);		
 		
 		//return $inventario;
 		return view('inventarios.index')->with('inventario', $inventario);
