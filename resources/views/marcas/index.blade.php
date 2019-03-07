@@ -9,9 +9,10 @@
 	</div>
 @endif
 @if(count($marcas)!=0)
+<h3>Listado de Marcas</h3>
 <form method="GET" action="{{ route('MarcasMultipleDelete') }}">
 	<div class="row">
-	<h3>Listado de Marcas</h3>
+
 		<table class="table table-striped table-bordered">
 			<thead align="center">
 				<tr>

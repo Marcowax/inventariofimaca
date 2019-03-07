@@ -9,6 +9,12 @@
 	</div>
 @endif
 @if(count($inventario)!=0)
+<div class="form-group" align="right">
+	<form method="GET" action="{{ route('InventariosList') }}" >
+	<div class="col-md-4 offset-md-6">
+		<input type="text" id="name" name="name" placeholder="Nombre del equipo" /> <button type="submit" class="btn btn-primary"> Buscar</button></div>
+	</form>
+</div>
 <form method="GET" action="{{ route('InventariosMultipleDelete') }}">
 	<div class="row">
 	<h3>Listado de Inventario</h3>
@@ -19,7 +25,6 @@
 					<th scope="col">Id</th>
 					<th scope="col">Nombre del equipo</th>
 					<th scope="col">Serial</th>
-					<th scope="col">Marca</th>
 					<th scope="col">Modelo</th>
 					<th scope="col">Acción</th>
 				</tr>
@@ -31,7 +36,6 @@
 					<td align="center">{{ $inventarios->id }}</td>
 					<td align="center">{{ $inventarios->nombre_equipo }}</td>
 					<td>{{ $inventarios->serial }}</td>
-					<td>{{ $inventarios->nombre_marca }}</td>
 					<td>{{ $inventarios->modelo }}</td>
 					<td align="center"><a href="/inventarios/{{ $inventarios->id }}/show" title="Visualizar"><i class="fas fa-search"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/inventarios/{{ $inventarios->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/inventarios/{{ $inventarios->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
