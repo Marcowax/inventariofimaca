@@ -25,18 +25,14 @@ class InventariosController extends Controller
         $this->middleware('auth');
     }
 	
-    public function index()
+    public function index(Request $request)
     {
-		$inventario = DB::table('marcas')
-			->join('inventarios', 'marcas.id', '=', 'inventarios.marca_id')
-			->select('inventarios.id as id', 'inventarios.nombre_equipo as nombre_equipo', 'inventarios.serial as serial', 'inventarios.modelo as modelo', 'marcas.nombre_marca as nombre_marca')
-			->paginate(20);		
+		$inventario = Inventario::name($request->get('name'))->paginate(20);	
 		
 		//return $inventario;
 		return view('inventarios.index')->with('inventario', $inventario);
     }
-	
-	
+		
     public function pdf()
     {        
         /**
