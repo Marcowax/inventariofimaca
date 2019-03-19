@@ -21,8 +21,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($ContadorTotal as $contador)
-				@foreach($tipo as $tipos)
+			@foreach($tipo as $tipos)
+				@foreach($ContadorTotal as $contador)
 					@if($tipos->id == $contador->tipo_id && $contador->contador>0)
 						<tr align="center">
 							<td align="center">{{ $tipos->nombre_tipo }}</td>
@@ -34,6 +34,12 @@
 			@endforeach	
 			</tbody>
 		</table>
+		<div class="col">
+			{{ $tipo->onEachSide(3)->links() }}
+		</div>
+		<div class="col" align="right">
+			<h5>Mostrando {{ $tipo->lastItem() }} de {{ $tipo->total() }} registros</h5>
+		</div>
 	</div>
 </form>
 @else

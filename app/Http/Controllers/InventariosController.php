@@ -79,12 +79,13 @@ class InventariosController extends Controller
 	public function Contador()
 	{
 		$ContadorTotal = DB::table('inventarios')
-			->select(DB::raw('count(tipo_id) as contador, tipo_id'))
+			->select(DB::raw('count(tipo_id) as contador, tipo_id'))							
 				->groupBy('tipo_id')
 				->get();
 		$tipo=DB::table('tipos')
 			->select('nombre_tipo', 'id')
-			->get();
+			->orderBy('nombre_tipo', 'asc')
+			->paginate(20);
 		return view('inventarios.count')->with(array('ContadorTotal' => $ContadorTotal, 'tipo' => $tipo));
 	}
 	

@@ -33,7 +33,7 @@
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $tipos->render() }}
+			{{ $tipos->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
 			<h5>Mostrando {{ $tipos->lastItem() }} de {{ $tipos->total() }} registros</h5>

@@ -33,7 +33,7 @@
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $ubicaciones->render() }}
+			{{ $ubicaciones->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
 			<h5>Mostrando {{ $ubicaciones->lastItem() }} de {{ $ubicaciones->total() }} registros</h5>

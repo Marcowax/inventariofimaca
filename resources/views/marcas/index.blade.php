@@ -34,7 +34,7 @@
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $marcas->render() }}
+			{{ $marcas->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
 			<h5>Mostrando {{ $marcas->lastItem() }} de {{ $marcas->total() }} registros</h5>

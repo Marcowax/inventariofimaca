@@ -43,7 +43,7 @@
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $inventario->render() }}
+			{{ $inventario->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
 			<h5>Mostrando {{ $inventario->lastItem() }} de {{ $inventario->total() }} registros</h5>
