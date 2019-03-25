@@ -64,7 +64,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-responder@fimaca.com.ve'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no_responder@fimaca.com'),
         'name' => env('MAIL_FROM_NAME', 'No responder'),
     ],
 
