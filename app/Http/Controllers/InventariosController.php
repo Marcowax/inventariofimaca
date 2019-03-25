@@ -93,7 +93,7 @@ class InventariosController extends Controller
     {
 	$validator = Validator::make($request->all(), [
 		'nombre_equipo'=>'required',
-		'serial'=>'required|unique:inventarios,serial,'.$request->id,
+		'serial'=>'required',
 		'marca'=>'required',
 		'modelo'=>'required',
 		'tipo'=>'required',
@@ -178,7 +178,7 @@ class InventariosController extends Controller
     {
 	$validator = Validator::make($request->all(), [
 		'nombre_equipo'=>'required',
-		'serial'=>'required|unique:inventarios,serial,'.$request->id,
+		'serial'=>'required',
 		'marca'=>'required',
 		'modelo'=>'required',
 		'tipo'=>'required',

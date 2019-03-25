@@ -24,7 +24,7 @@ class InventarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'serial'=>'required|unique:inventarios,serial,'.$Request->id,
+            'serial'=>'required',
 			'marca'=>'required',
 			'modelo'=>'required',
 			'tipo'=>'required',

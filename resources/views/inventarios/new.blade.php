@@ -85,6 +85,9 @@
 
                             <div class="col-md-8">
 								<select id="activo" name="activo" class="form-control">
+									@if(old('activo'))
+										<option value="{{ $tipo->id }}">{{ old('activo') }}</option>
+									@endif
 									<option value="Sí">Sí</option>
 									<option value="No">No</option>
 								</select>
