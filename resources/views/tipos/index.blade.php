@@ -5,11 +5,11 @@
 @if(Session::has('mensaje'))
 	<div class="alert alert-success alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		{{Session::get('mensaje')}}
+		{{ Session::get('mensaje') }}
 	</div>
 @endif
-@if(count($tipos)!=0)
-<form method="GET" action="{{ route('TiposMultipleDelete') }}">
+@if(count($ContadorTotal)!=0)
+<form method="GET" action="{{ route('InventariosMultipleDelete') }}">
 	<div class="row">
 	<h3>Listado de Tipo de Equipos</h3>
 		<table class="table table-striped table-bordered">
@@ -17,26 +17,32 @@
 				<tr>
 					<th scope="col"><input type="checkbox" id="SeleccionCompleta" name="SeleccionCompleta" title="Seleccionar Todos" /></th>
 					<th scope="col">Id</th>
-					<th scope="col">Tipo</th>
+					<th scope="col">Tipo de equipo</th>
+					<th scope="col">Cantidad</th>
 					<th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($tipos as $tipo)
-				<tr align="center">
-					<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $tipo->id }}" /></th>
-					<td align="center">{{$tipo->id}}</td>
-					<td>{{$tipo->nombre_tipo}}</td>
-					<td align="center"><a href="/tipos/{{ $tipo->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/tipos/{{ $tipo->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-				</tr>
-			@endforeach
+			@foreach($tipo as $tipos)
+				@foreach($ContadorTotal as $contador)
+					@if($tipos->id == $contador->tipo_id)
+						<tr align="center">
+							<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $tipos->id }}" /></th>
+							<td align="center">{{ $tipos->id }}</td>
+							<td align="center">{{ $tipos->nombre_tipo }}</td>
+							<td align="center">{{ $contador->contador }}</td>
+							<td align="center"><a href="/tipos/{{ $contador->tipo_id }}/tipo" title="Detalles"><i class="far fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/tipos/{{ $tipos->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/tipos/{{ $tipos->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+					@endif
+				@endforeach
+			@endforeach	
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $tipos->onEachSide(3)->links() }}
+			{{ $tipo->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
-			<h5>Mostrando {{ $tipos->lastItem() }} de {{ $tipos->total() }} registros</h5>
+			<h5>Mostrando {{ $tipo->lastItem() }} de {{ $tipo->total() }} registros</h5>
 		</div>
 	</div>
 	<div class="form-group row mb-0">

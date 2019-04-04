@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Marca;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\MarcaRequest;
+use DB;
 
 class MarcasController extends Controller
 {
@@ -21,11 +22,16 @@ class MarcasController extends Controller
 	
     public function index()
     {
-        $marcas = Marca::orderBy('nombre_marca', 'asc')->paginate(20);
-		
-		//return $marcas;
-		return view('marcas.index')->with('marcas', $marcas);
-    }
+		$ContadorTotal = DB::table('inventarios')
+			->select(DB::raw('count(marca_id) as contador, marca_id'))							
+				->groupBy('marca_id')
+				->get();
+		$marca=DB::table('marcas')
+			->select('nombre_marca', 'id')
+			->orderBy('nombre_marca', 'asc')
+			->paginate(20);
+		return view('marcas.index')->with(array('ContadorTotal' => $ContadorTotal, 'marca' => $marca));
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -35,6 +41,16 @@ class MarcasController extends Controller
 	public function ShowForm()
 	{
 		return view('marcas.new');
+	}
+	
+	public function ShowMarca($id)
+	{
+		$equipo = DB::table('inventarios')
+			->select('id', 'nombre_equipo', 'serial', 'modelo')
+				->where('marca_id', '=', $id)
+				->get();
+		$marca = marca::find($id);
+		return view('marcas.detalles')->with(array('equipo' => $equipo, 'marca' => $marca));
 	}
 	
 	public function create(Request $request)

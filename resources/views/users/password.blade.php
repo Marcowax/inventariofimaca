@@ -1,8 +1,9 @@
 @extends("layouts.app")
+
 @section("content")
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header">{{ __('Cambiar Contraseña') }}</div>
                 <div class="card-body">
@@ -35,13 +36,13 @@
                             </div>
                         </div>
 						@if ($errors->any())
-						<div class="alert alert-danger">
-							<ul>
-							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-							</ul>
-						</div>
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
 						@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">

@@ -8,36 +8,41 @@
 		{{ Session::get('mensaje') }}
 	</div>
 @endif
-@if(count($marcas)!=0)
-<h3>Listado de Marcas</h3>
+@if(count($ContadorTotal)!=0)
 <form method="GET" action="{{ route('MarcasMultipleDelete') }}">
 	<div class="row">
-
+	<h3>Listado de Marcas</h3>
 		<table class="table table-striped table-bordered">
 			<thead align="center">
 				<tr>
 					<th scope="col"><input type="checkbox" id="SeleccionCompleta" name="SeleccionCompleta" title="Seleccionar Todos" /></th>
 					<th scope="col">Id</th>
 					<th scope="col">Nombre de la Marca</th>
+					<th scope="col">Cantidad</th>
 					<th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($marcas as $marca)
-				<tr align="center">
-					<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $marca->id }}" /></th>
-					<td align="center">{{ $marca->id }}</td>
-					<td>{{ $marca->nombre_marca }}</td>
-					<td align="center"><a href="/marcas/{{ $marca->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/marcas/{{ $marca->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-				</tr>
-			@endforeach
+			@foreach($marca as $marcas)
+				@foreach($ContadorTotal as $contador)
+					@if($marcas->id == $contador->marca_id)
+						<tr align="center">
+							<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $marcas->id }}" /></th>
+							<td align="center">{{ $marcas->id }}</td>
+							<td>{{ $marcas->nombre_marca }}</td>
+							<td align="center">{{ $contador->contador }}</td>
+							<td align="center"><a href="/marcas/{{ $contador->marca_id }}/marca" title="Detalles"><i class="far fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/marcas/{{ $marcas->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/marcas/{{ $marcas->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+					@endif
+				@endforeach
+			@endforeach	
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $marcas->onEachSide(3)->links() }}
+			{{ $marca->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
-			<h5>Mostrando {{ $marcas->lastItem() }} de {{ $marcas->total() }} registros</h5>
+			<h5>Mostrando {{ $marca->lastItem() }} de {{ $marca->total() }} registros</h5>
 		</div>			
 	</div>
 	<div class="form-group row mb-0">

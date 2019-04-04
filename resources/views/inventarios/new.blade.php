@@ -6,14 +6,13 @@
         <div class="col-md-7">
             <div class="card">
                 <div class="card-header">{{ __('Registro de Inventario') }}</div>
-
                 <div class="card-body">
 				@if(Session::has('mensaje'))
 				<div class="alert alert-success alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					{{ Session::get('mensaje') }}
 				</div>
-			@endif
+				@endif
                     <form method="POST" action="{{ route('InventarioRegistered') }}">
                         @csrf
                         <div class="form-group row">
@@ -94,14 +93,14 @@
                             </div>
                         </div>
 						@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">
                                 <button type="submit" class="btn btn-primary">

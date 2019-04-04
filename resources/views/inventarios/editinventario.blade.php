@@ -20,20 +20,17 @@
 
                             <div class="col-md-8">
                                 <input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="{{ $inventario->nombre_equipo }}" maxlength="50" autocomplete="off" />
-                                
                             </div>
                         </div>
 						<div class="form-group row">
                             <label for="serial" class="col-md-3 col-form-label text-md-right">{{ __('Serial') }}</label>
 
                             <div class="col-md-8">
-                                <input type="text" id="serial" name="serial" class="form-control" value="{{ $inventario->serial }}" maxlength="50" autocomplete="off" />
-                                
+                                <input type="text" id="serial" name="serial" class="form-control" value="{{ $inventario->serial }}" maxlength="50" autocomplete="off" />                    
                             </div>
                         </div>
 						<div class="form-group row">
                             <label for="marca" class="col-md-3 col-form-label text-md-right">{{ __('Marca') }}</label>
-
                             <div class="col-md-8">
 								<select id="marca" name="marca" class="form-control">
 									<option value="{{ $inventario->marca_id }}">{{ $marca_actual->nombre_marca }}</option>
@@ -45,15 +42,12 @@
                         </div>
 						<div class="form-group row">
                             <label for="modelo" class="col-md-3 col-form-label text-md-right">{{ __('Modelo') }}</label>
-
                             <div class="col-md-8">
                                 <input type="text" id="modelo" name="modelo" class="form-control" value="{{ $inventario->modelo }}" maxlength="30" autocomplete="off" />
-                                
                             </div>
                         </div>
 						<div class="form-group row">
                             <label for="tipo" class="col-md-3 col-form-label text-md-right">{{ __('Tipo de equipo') }}</label>
-
                             <div class="col-md-8">
 								<select id="tipo" name="tipo" class="form-control">
 									<option value="{{ $inventario->tipo_id }}">{{ $tipo_actual->nombre_tipo }}</option>
@@ -65,7 +59,6 @@
                         </div>
 						<div class="form-group row">
                             <label for="ubicacion" class="col-md-3 col-form-label text-md-right">{{ __('Ubicación o Dpto.') }}</label>
-
                             <div class="col-md-8">
 								<select id="ubicacion" name="ubicacion" class="form-control">
 									<option value="{{ $inventario->ubicacion_id }}">{{ $ubicacion_actual->nombre_ubicacion }}</option>
@@ -77,14 +70,12 @@
                         </div>
 						<div class="form-group row">
                             <label for="fecha_registro" class="col-md-3 col-form-label text-md-right">{{ __('Fecha de registro') }}</label>
-
                             <div class="col-md-8">
                                 <input type="text" id="fecha_registro" name="fecha_registro" class="form-control" value="{{  $inventario->fecha_registro }}"  placeholder="dd-mm-yyyy" autocomplete="off" />                           
                             </div>
                         </div>
 						<div class="form-group row">
                             <label for="activo" class="col-md-3 col-form-label text-md-right">{{ __('¿Activo?') }}</label>
-
                             <div class="col-md-8">
 								<select id="activo" name="activo" class="form-control">
 									<option value="Sí">Sí</option>
@@ -93,13 +84,13 @@
                             </div>
                         </div>
 						@if ($errors->any())
-						<div class="alert alert-danger">
-							<ul>
-							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-							</ul>
-						</div>
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
 						@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">

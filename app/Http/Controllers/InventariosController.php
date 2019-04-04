@@ -66,29 +66,6 @@ class InventariosController extends Controller
 		return view('inventarios.new')->with(array('marcas' => $marcas, 'tipos' => $tipos, 'ubicaciones' => $ubicaciones, 'fecha_registro' => $fecha_registro));
 	}
 	
-	public function ShowTipo($id)
-	{
-		$equipo = DB::table('inventarios')
-			->select('id', 'nombre_equipo', 'serial', 'modelo')
-				->where('tipo_id', '=', $id)
-				->get();
-		$tipo = tipo::find($id);
-		return view('inventarios.detalles')->with(array('equipo' => $equipo, 'tipo' => $tipo));
-	}
-	
-	public function Contador()
-	{
-		$ContadorTotal = DB::table('inventarios')
-			->select(DB::raw('count(tipo_id) as contador, tipo_id'))							
-				->groupBy('tipo_id')
-				->get();
-		$tipo=DB::table('tipos')
-			->select('nombre_tipo', 'id')
-			->orderBy('nombre_tipo', 'asc')
-			->paginate(20);
-		return view('inventarios.count')->with(array('ContadorTotal' => $ContadorTotal, 'tipo' => $tipo));
-	}
-	
     public function create(Request $request)
     {
 	$validator = Validator::make($request->all(), [

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tipo;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\TipoRequest;
+use DB;
 
 class TiposController extends Controller
 {
@@ -16,10 +17,15 @@ class TiposController extends Controller
      */
     public function index()
     {
-        $tipos = Tipo::orderBy('nombre_tipo', 'asc')->paginate(20);
-		
-		//return $tipos;
-		return view('tipos.index')->with('tipos', $tipos);
+        $ContadorTotal = DB::table('inventarios')
+			->select(DB::raw('count(tipo_id) as contador, tipo_id'))							
+				->groupBy('tipo_id')
+				->get();
+		$tipo=DB::table('tipos')
+			->select('nombre_tipo', 'id')
+			->orderBy('nombre_tipo', 'asc')
+			->paginate(20);
+		return view('tipos.index')->with(array('ContadorTotal' => $ContadorTotal, 'tipo' => $tipo));
     }
 
     /**
@@ -30,6 +36,16 @@ class TiposController extends Controller
 	public function ShowForm()
 	{
 		return view('tipos.new');
+	}
+	
+	public function ShowTipo($id)
+	{
+		$equipo = DB::table('inventarios')
+			->select('id', 'nombre_equipo', 'serial', 'modelo')
+				->where('tipo_id', '=', $id)
+				->get();
+		$tipo = tipo::find($id);
+		return view('tipos.detalles')->with(array('equipo' => $equipo, 'tipo' => $tipo));
 	}
 
     public function create(Request $request)

@@ -8,7 +8,7 @@
 		{{ Session::get('mensaje') }}
 	</div>
 @endif
-@if(count($ubicaciones)!=0)
+@if(count($ContadorTotal)!=0)
 <form method="GET" action="{{ route('UbicacionesMultipleDelete') }}">
 	<div class="row">
 	<h3>Listado de Ubicaciones o Departamentos</h3>
@@ -18,25 +18,31 @@
 					<th scope="col"><input type="checkbox" id="SeleccionCompleta" name="SeleccionCompleta" title="Seleccionar Todos" /></th>
 					<th scope="col">Id</th>
 					<th scope="col">Ubicación o Departamento</th>
+					<th scope="col">Cantidad</th>
 					<th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($ubicaciones as $ubicacion)
-				<tr align="center">
-					<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $ubicacion->id }}" /></th>
-					<td align="center">{{ $ubicacion->id }}</td>
-					<td>{{ $ubicacion->nombre_ubicacion }}</td>
-					<td align="center"><a href="/ubicaciones/{{ $ubicacion->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ubicaciones/{{ $ubicacion->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-				</tr>
-			@endforeach
+			@foreach($ubicacion as $ubicaciones)
+				@foreach($ContadorTotal as $contador)
+					@if($ubicaciones->id == $contador->ubicacion_id)
+						<tr align="center">
+							<th scope="col"><input type="checkbox" id="ids" name="ids[]" value="{{ $ubicaciones->id }}" /></th>
+							<td align="center">{{ $ubicaciones->id }}</td>
+							<td>{{ $ubicaciones->nombre_ubicacion }}</td>
+							<td align="center">{{ $contador->contador }}</td>
+							<td align="center"><a href="/ubicaciones/{{ $contador->ubicacion_id }}/ubicacion" title="Detalles"><i class="far fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ubicaciones/{{ $ubicaciones->id }}/edit" title="Editar"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/ubicaciones/{{ $ubicaciones->id }}/delete" onclick="return confirm('¿Estás seguro de eliminar este elemento?')" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+					@endif
+				@endforeach
+			@endforeach	
 			</tbody>
 		</table>
 		<div class="col">
-			{{ $ubicaciones->onEachSide(3)->links() }}
+			{{ $ubicacion->onEachSide(3)->links() }}
 		</div>
 		<div class="col" align="right">
-			<h5>Mostrando {{ $ubicaciones->lastItem() }} de {{ $ubicaciones->total() }} registros</h5>
+			<h5>Mostrando {{ $ubicacion->lastItem() }} de {{ $ubicacion->total() }} registros</h5>
 		</div>
 	</div>
 	<div class="form-group row mb-0">

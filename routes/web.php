@@ -43,10 +43,6 @@ Route::get('/inventarios/{id}/show', 'InventariosController@show')->name('Invent
 
 Route::get('/inventarios/pdf', 'InventariosController@pdf')->name('inventario.pdf');
 
-Route::get('/inventarios/count', 'InventariosController@Contador')->name('InventarioContador');
-
-Route::get('/inventarios/{id}/tipo', 'InventariosController@ShowTipo')->name('InventariosShowTipo');
-
 Route::get('/inventarios/{id}/edit', 'InventariosController@edit')->name('InventariosEdit');
 
 Route::post('/inventarios/{id}/update', 'InventariosController@update')->name('InventariosUpdate');
@@ -56,6 +52,8 @@ Route::get('/inventarios/{id}/delete', 'InventariosController@destroy')->name('I
 Route::get('/inventarios/delete', 'InventariosController@destroyMany')->name('InventariosMultipleDelete');
 
 Route::get('/marcas', 'MarcasController@index')->name('MarcasList');
+
+Route::get('/marcas/{id}/marca', 'MarcasController@ShowMarca')->name('ShowMarca');
 
 Route::get('/marcas/register', 'MarcasController@ShowForm')->name('MarcasRegister');
 
@@ -71,6 +69,8 @@ Route::get('/marcas/delete', 'MarcasController@destroyMany')->name('MarcasMultip
 
 Route::get('/tipos', 'TiposController@index')->name('TiposList');
 
+Route::get('/tipos/{id}/tipo', 'TiposController@ShowTipo')->name('ShowTipo');
+
 Route::get('/tipos/register', 'TiposController@ShowForm')->name('TiposRegister');
 
 Route::post('/tipos/register', 'TiposController@create')->name('TiposRegistered');
@@ -84,6 +84,8 @@ Route::get('/tipos/{id}/delete', 'TiposController@destroy')->name('TiposDelete')
 Route::get('/tipos/delete', 'TiposController@destroyMany')->name('TiposMultipleDelete');
 
 Route::get('/ubicaciones', 'UbicacionesController@index')->name('UbicacionesList');
+
+Route::get('/ubicaciones/{id}/ubicacion', 'UbicacionesController@ShowUbicacion')->name('ShowUbicacion');
 
 Route::get('/ubicaciones/register', 'UbicacionesController@ShowForm')->name('UbicacionesRegister');
 

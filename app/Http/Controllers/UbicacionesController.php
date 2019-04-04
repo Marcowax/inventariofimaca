@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Ubicacion;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UbicacionRequest;
+use DB;
 
 class UbicacionesController extends Controller
 {
@@ -16,10 +17,15 @@ class UbicacionesController extends Controller
      */
     public function index()
     {
-        $ubicaciones = Ubicacion::orderBy('nombre_ubicacion', 'asc')->paginate(20);
-		
-		//return $ubicaciones;
-		return view('ubicaciones.index')->with('ubicaciones', $ubicaciones);
+		$ContadorTotal = DB::table('inventarios')
+			->select(DB::raw('count(ubicacion_id) as contador, ubicacion_id'))							
+				->groupBy('ubicacion_id')
+				->get();
+		$ubicacion=DB::table('ubicacions')
+			->select('nombre_ubicacion', 'id')
+			->orderBy('nombre_ubicacion', 'asc')
+			->paginate(20);
+		return view('ubicaciones.index')->with(array('ContadorTotal' => $ContadorTotal, 'ubicacion' => $ubicacion));
     }
 
     /**
@@ -30,6 +36,16 @@ class UbicacionesController extends Controller
 	public function ShowForm()
 	{
 		return view('ubicaciones.new');
+	}
+	
+	public function ShowUbicacion($id)
+	{
+		$equipo = DB::table('inventarios')
+			->select('id', 'nombre_equipo', 'serial', 'modelo')
+				->where('ubicacion_id', '=', $id)
+				->get();
+		$ubicacion = ubicacion::find($id);
+		return view('ubicaciones.detalles')->with(array('equipo' => $equipo, 'ubicacion' => $ubicacion));
 	}
 	
     public function create(Request $request)

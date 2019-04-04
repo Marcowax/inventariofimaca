@@ -25,14 +25,14 @@
                             </div>
                         </div>
 						@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">
                                 <button type="submit" class="btn btn-primary">

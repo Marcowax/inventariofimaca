@@ -39,7 +39,7 @@
 	</thead>
 	<tbody>
 	@foreach($inventario as $inventarios)
-		<tr align="center">
+		<tr align="center" style="font-size:10px">
 			<td align="center">{{ $inventarios->id }}</td>
 			<td align="center">{{ $inventarios->nombre_equipo }}</td>
 			<td>{{ $inventarios->serial }}</td>

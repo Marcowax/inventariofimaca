@@ -70,14 +70,6 @@
                             </li>
 							<li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Consultas') }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">									
-										<a class="dropdown-item" href="{{ route('InventarioContador') }}">{{ __('Contador de Inventario') }}</a>
-                                </div>
-                            </li>
-							<li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ __('Listas') }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -85,7 +77,7 @@
 										<a id="" class="nav-link" href="{{ route('MarcasList') }}" role="button">{{ __('Marcas') }}</a>
 										<a id="" class="nav-link" href="{{ route('TiposList') }}" role="button">{{ __('Tipos') }}</a>
 										<a id="" class="nav-link" href="{{ route('UbicacionesList') }}" role="button">{{ __('Ubicaciones o Departamentos') }}</a>
-										@if( Auth::user()->administrator == 'Sí' )
+										@if(Auth::user()->administrator == 'Sí')
 											<a id="" class="nav-link" href="{{ route('UsersList') }}" role="button">{{ __('Usuarios') }}</a>
 										@endif
                                 </div>
@@ -97,15 +89,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									<a id="" class="nav-link" href="{{ route('PasswordChange') }}" role="button">{{ __('Cambiar Contraseña') }}</a>
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Desconectarme') }}
+                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Desconectarme') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										@csrf
+									</form>
                                 </div>
                             </li>
                         @endguest
@@ -113,7 +101,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
