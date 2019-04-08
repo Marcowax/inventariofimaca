@@ -4,6 +4,7 @@
 <style>
 #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 12px;
   border-collapse: collapse;
   width: 100%;
 }
@@ -18,8 +19,6 @@
 #customers tr:hover {background-color: #ddd;}
 
 #customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
   background-color: #4CAF50;
   color: white;
 }
@@ -35,6 +34,9 @@
 			<th scope="col">Serial</th>
 			<th scope="col">Marca</th>
 			<th scope="col">Modelo</th>
+			<th scope="col">Tipo</th>
+			<th scope="col" width="110px">Ubicación o Dpto.</th>
+			<th scope="col" width="110px">Fecha de Registro</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -45,6 +47,9 @@
 			<td>{{ $inventarios->serial }}</td>
 			<td>{{ $inventarios->nombre_marca }}</td>
 			<td>{{ $inventarios->modelo }}</td>
+			<td>{{ $inventarios->nombre_tipo }}</td>
+			<td>{{ $inventarios->nombre_ubicacion }}</td>
+			<td>{{ $inventarios->fecha_registro }}</td>
 		</tr>
 	@endforeach
 	</tbody>
