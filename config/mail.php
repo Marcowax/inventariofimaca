@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'imap'),
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'imap.ionos.com'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 993),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no_responder@fimaca.com'),
-        'name' => env('MAIL_FROM_NAME', 'No responder'),
+        'address' => env('MAIL_FROM_ADDRESS', 'marcowebcomve@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Marcowebcomve'),
     ],
 
     /*
@@ -92,9 +92,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'no-responder'),
+    'username' => env('MAIL_USERNAME', 'marcowebcomve'),
 
-    'password' => env('MAIL_PASSWORD', '20fimaca19.Ve'),
+    'password' => env('MAIL_PASSWORD', 'M1rc4w2b.Gm13l'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
