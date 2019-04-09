@@ -46,6 +46,7 @@ class InventariosController extends Controller
 			->join('tipos', 'tipos.id', '=', 'inventarios.tipo_id')
 			->join('ubicacions', 'ubicacions.id', '=', 'inventarios.ubicacion_id')
 			->select(DB::raw('DATE_FORMAT(inventarios.fecha_registro, "%d-%m-%Y") as fecha_registro'), 'inventarios.id as id', 'inventarios.nombre_equipo as nombre_equipo', 'inventarios.serial as serial', 'inventarios.modelo as modelo', 'marcas.nombre_marca as nombre_marca', 'inventarios.modelo as modelo', 'tipos.nombre_tipo as nombre_tipo', 'ubicacions.nombre_ubicacion as nombre_ubicacion')
+			->orderBy('tipos.nombre_tipo')
 			->get();
 
         $pdf = PDF::loadView('inventarios.pdf.inventario', compact('inventario'));
